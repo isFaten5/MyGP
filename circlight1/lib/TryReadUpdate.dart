@@ -348,4 +348,140 @@ class _EditTry extends State<EditTry1> {
             // return Center(child: CircularProgressIndicator());
             ));
   }
+
+  // ignore: non_constant_identifier_names
+  getName(DicId) {
+    CollectionReference Parents =
+        FirebaseFirestore.instance.collection("Parent1");
+    return FutureBuilder<DocumentSnapshot>(
+      future: Parents.doc(DicId).get(),
+      builder: ((context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          // ignore: prefer_const_constructors
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: TextFormField(
+              textAlign: TextAlign.right,
+              autofocus: true,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "ایمیل",
+                  hintText: "ایمیل خود را وارد کنید"),
+              initialValue: "${data['Name']}",
+            ),
+          );
+        }
+        return Text("  ");
+      }),
+    );
+  }
+
+  getNationality(DicId) {
+    CollectionReference Parents =
+        FirebaseFirestore.instance.collection("Parent1");
+    return FutureBuilder<DocumentSnapshot>(
+      future: Parents.doc(DicId).get(),
+      builder: ((context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          // ignore: prefer_const_constructors
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: TextFormField(
+              textAlign: TextAlign.right,
+              autofocus: true,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: "ایمیل",
+                  hintText: "ایمیل خود را وارد کنید"),
+              initialValue: "${data['Name']}",
+            ),
+          );
+        }
+        return Text("  ");
+      }),
+    );
+  }
 }
+/*
+ListView.builder(
+                              itemCount: 1,
+                              itemBuilder: ((context, index) {
+                                return getName(x);
+                              }),
+                            ),
+
+
+
+
+*/
+
+/*
+Buttton
+
+MaterialButton(
+              onPressed: () {
+                Text:
+                Text("hello");
+              },
+              color: Colors.deepPurple[200],
+              child: Text('sign out'),
+            )
+
+
+            */
+            /*  getName(DicId) {
+    CollectionReference Parents =
+        FirebaseFirestore.instance.collection("Parent1");
+    return FutureBuilder<DocumentSnapshot>(
+      future: Parents.doc(DicId).get(),
+      builder: ((context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          Map<String, dynamic> data =
+              snapshot.data!.data() as Map<String, dynamic>;
+          return Text('الاسم: ${data['Name']}');
+        }
+        return Text("  ");
+      }),
+    );
+  }*/
+  /*        return TextField(
+            textAlign: TextAlign.right,
+
+            decoration: InputDecoration(
+              hintText: "الوظيفة ",
+              labelStyle: TextStyle(color: Colors.black87, fontSize: 17),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple),
+              ),
+              enabledBorder: new UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1.0)),
+            ),
+            //  controller: _passwordController,
+            // obscureText: true,
+          );
+          */
+          /*
+          ///////////////////////CENTER//////////////
+          ///return TextField(
+            textAlign: TextAlign.right,
+
+            decoration: InputDecoration(
+              label: const Center(
+                child: Text("Your Centered Label Text"),
+              ),
+              hintText: "الوظيفة ",
+              labelStyle: TextStyle(color: Colors.black87, fontSize: 17),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple),
+              ),
+              enabledBorder: new UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 1.0)),
+            ),
+            //  controller: _passwordController,
+            // obscureText: true,
+          );
+          */

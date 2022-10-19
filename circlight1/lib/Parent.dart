@@ -7,7 +7,7 @@ import 'package:adobe_xd/pinned.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:circlight/TryReadUpdate.dart';
+
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'firebase_options.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -57,11 +57,12 @@ class Parent {
       PAltPhoneNumber: json['AltPhoneNumber']);*/
 
   //String DocID = "H7P2rU79FU1e6x7MvMP1";
-  UpdateParent(DocId, parentName) async {
-    final userRef = FirebaseFirestore.instance;
-    await userRef
-        .collection("Parent")
-        .doc(DocId)
-        .set({'Name': parentName.text});
+  Future<String> ReadData(DocID) async {
+    DocumentSnapshot variable = await FirebaseFirestore.instance
+        .collection("Parent1")
+        .doc("H7P2rU79FU1e6x7MvMP1")
+        .get();
+    String x = variable['JobTitle'];
+    return x;
   }
 }//END OF CLASS
