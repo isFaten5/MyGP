@@ -1,16 +1,9 @@
-import 'dart:convert';
+//import 'package:cool_alert/cool_alert.dart';
 
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:adobe_xd/pinned.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:circlight/TryReadUpdate.dart';
-import 'package:firebase_core/firebase_core.dart' show Firebase;
-import 'firebase_options.dart';
-import 'package:flutter/src/widgets/framework.dart';
+//import 'package:adobe_xd/adobe_xd.dart';
+//import 'package:flutter/src/widgets/framework.dart';
 
 class Parent {
   String Name = " "; //
@@ -24,6 +17,7 @@ class Parent {
   String PJobTitle = " "; //
   String PPhoneNumber = ""; //
   String PAltPhoneNumber = ""; //
+  String PRelativeRelation = "";
 
   Parent(
       {required this.Name,
@@ -33,35 +27,25 @@ class Parent {
       required this.PJobTitle,
       required this.PPhoneNumber,
       required this.PAltPhoneNumber,
-      required this.PNationality});
-  /*
-  Map<String, dynamic> toJson() => {
-        'Name': Name,
-        'Email': Email,
-        'UserName': PUserName,
-        'NationalID': PNationalID,
-        'Nationality': PNationality,
-        'JobTitle': PJobTitle,
-        'PhoneNumber': PPhoneNumber,
-        'AltPhoneNumber': PAltPhoneNumber
-      };*/
-/*
-  static Parent fromJson(Map<String, dynamic> json) => Parent(
-      Name: json['Name'],
-      Email: json['Email'],
-      PUserName: json['UserName'],
-      PNationalID: json['NationalID'],
-      PNationality: json['Nationality'],
-      PJobTitle: json['JobTitle'],
-      PPhoneNumber: json['PhoneNumber'],
-      PAltPhoneNumber: json['AltPhoneNumber']);*/
+      required this.PNationality,
+      required this.PRelativeRelation});
 
-  //String DocID = "H7P2rU79FU1e6x7MvMP1";
-  UpdateParent(DocId, parentName) async {
-    final userRef = FirebaseFirestore.instance;
-    await userRef
-        .collection("Parent")
-        .doc(DocId)
-        .set({'Name': parentName.text});
+  UpdateParent(DocId, Name, UserName, Email, NationalID, Nationality, JobTitle,
+      Phone, AltPhone, PRelativeRelation) async {
+    CollectionReference Parents =
+        FirebaseFirestore.instance.collection("Parent");
+    await Parents.doc(DocId).set({
+      'Name': Name,
+      'UserName': UserName,
+      'Email': Email,
+      'NationalID': NationalID,
+      'Password': NationalID,
+      'PhoneNumber': Phone,
+      'AltPhoneNumber': AltPhone,
+      'Nationality': Nationality,
+      'JobTitle': JobTitle,
+      'LateStatus': false,
+      "RelativeRelation": PRelativeRelation
+    });
   }
 }//END OF CLASS
